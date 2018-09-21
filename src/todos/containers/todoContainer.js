@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 
+
 import * as TodoActions from '../actions/todoActions'
 import TodoTable from '../components/todoTable';
 
@@ -33,7 +34,7 @@ export class TodoContainer extends Component {
     //Create
     createTodo = (todo) => {
         if (todo.title.length === 0) {
-            console.error('Please Enter Something!');
+            console.error('Please Enter a Value in Title Input ')
         } else {
             this.props.actions.CreateTodo(todo)
         }

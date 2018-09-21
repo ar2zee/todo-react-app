@@ -28,7 +28,6 @@ const TodoRow = (props) => {
 
 // Updating, done and deleting these three states are represented with different Class Name
 const getClassName = (props) => {
-    console.log(props.todo.completed)
     return `
     ${props.todo.updating
         ? "updating"
@@ -37,8 +36,8 @@ const getClassName = (props) => {
         ? props.todo.status = 'done' 
         : props.todo.status = "" }    
     ${props.todo.deleting
-                ? "deleting"
-                : ""}
+        ? "deleting"
+        : ""}
             `
 }
 
