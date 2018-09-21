@@ -117,7 +117,6 @@ export function ChangeTodoSuccess(todo) {
 // markTodoAsCompleted
 export function markTodoAsCompleted(todo) {
     return (dispatch, getState) => {
-        //Multiple actions can be sent usign the Redux-Thunk middleware
         dispatch({
             type: COMPLETE_TODO,
             todo
@@ -128,8 +127,6 @@ export function markTodoAsCompleted(todo) {
     }
 }
 export function markTodoAsCompletedSuccess(todo) {
-    // const newData = JSON.parse(todo.config.data);
-    // console.log('SHOW:', todo)
     return {
         type: COMPLETE_TODO_SUCCESS,
         todo,

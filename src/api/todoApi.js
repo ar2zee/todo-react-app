@@ -1,14 +1,8 @@
 import {HttpClient} from './httpClient' 
 
-// This is the API. The backend root URL can be set from here.
-
 const API = 'https://practiceapi.devmountain.com/api'
 
-//Setting the todos URI
-
 const TODO_API = `${API}/tasks`
-
-// The CRUD Operations of the Todo Resource.
 
 
 //Create
@@ -16,7 +10,7 @@ const createTodo = todo => {
     return HttpClient.post(TODO_API, todo)
 }
 
-//Read
+//Get
 const getTodo = () => {
     return HttpClient.get(TODO_API)
 }
@@ -36,8 +30,6 @@ const removeTodo = todo => {
     return HttpClient.delete(`${TODO_API}/${todo.id}`)
 }
 
-
-//Encapsulating in a JSON object
 
 const TodoApi = { createTodo, getTodo, markTodoAsCompleted, removeTodo, changeTodo}
 

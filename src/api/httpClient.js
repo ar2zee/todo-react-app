@@ -1,7 +1,6 @@
 import axios from 'axios' 
 
-
-//Create a Http Client using Axios. Further modifications in this layer can be done later like Authorization.
+//Create a Http Client using Axios.
 
 const post = (url, data, config = {}) => {
     return axios.post(url, data, config)
@@ -12,10 +11,8 @@ const get = (url) => {
 }
 
 const put = (url) => {
-return axios.put(url)
+    return axios.put(url)
 }
-
-//Cannot contain a delete method - Cause delete is a keyword.
 
 const del = (url) => {
     return axios.delete(url)
@@ -25,7 +22,6 @@ const patch = (url = '', data) => {
     return axios.patch(url, data, )
 }
 
-//Encapsulating in a JSON object
 
 const HttpClient = {
     post,
