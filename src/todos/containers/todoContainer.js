@@ -30,11 +30,13 @@ export class TodoContainer extends Component {
         this.props.actions.CancelEditing(id)
     }
     editTodo = (todo) => {
-        this.props.actions.UpdateTodo(todo)
+        this.props.actions.changeTodo(todo)
     }
-    completeTodo = (todo) => {
-        this.props.actions.UpdateTodo({...todo, status: 'done'})
-    }
+
+    // completeTodo = (todo) => {
+    //     this.props.actions.changeTodo({ ...todo, status: 'done', completed: true})
+    // }
+
 
     //Delete
     deleteTodo = (todo) => {
@@ -45,13 +47,13 @@ export class TodoContainer extends Component {
         return (
             <div className="todo-container">
                 <TodoTable
+                    deleteTodo = {this.deleteTodo}
                     todos={this.props.todos}
                     createTodo={this.createTodo}
                     startEditing={this.startEditing}
                     cancelEditing={this.cancelEditing}
                     editTodo={this.editTodo}
                     completeTodo = {this.completeTodo}
-                    deleteTodo = {this.deleteTodo}
                 />
             </div>
         );

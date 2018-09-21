@@ -17,12 +17,12 @@ const put = (url, data, config = {}) => {
 
 //Cannot contain a delete method - Cause delete is a keyword.
 
-const del = (url, config = {}) => {
-    return axios.delete(url, config)
+const del = (url) => {
+    return axios.delete(url)
 }
 
-const patch = (url, config = {}) => {
-    return axios.patch(url, config)
+const patch = (url = '', data = '', config = {}) => {
+    return axios.patch(url, data, config)
 }
 
 //Encapsulating in a JSON object

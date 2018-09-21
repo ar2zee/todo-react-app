@@ -92,21 +92,19 @@ export function CancelEditing(id) {
     }
 }
 
-export function UpdateTodo(todo) {
+export function changeTodo(todo) {
     return (dispatch, getState) => {
-        
         //Multiple actions can be sent usign the Redux-Thunk middleware
-
         dispatch({
             type: UPDATE_TODO,
             todo
         })
-        TodoApi.updateTodo(todo).then(res => {
-            dispatch(UpdateTodoSuccess(res.data))
+        TodoApi.changeTodo(todo).then(res => {
+            dispatch(ChangeTodoSuccess(res.data))
         })
     }
 }
-export function UpdateTodoSuccess(todo) {
+export function ChangeTodoSuccess(todo) {
     return {
         type: UPDATE_TODO_SUCCESS,
         todo,
@@ -120,19 +118,21 @@ export function DeleteTodo(todo) {
     return (dispatch, getState) => {
         dispatch({
             type: DELETE_TODO,
-            todo
+            todo: todo
         })
         TodoApi.removeTodo(todo).then(res => {
-            if (res.status === 204) {
+            if (res.status === 200) {
                 dispatch(DeleteTodoSuccess(todo))
             }
-        })
+        }) 
     }
 }
+
 export function DeleteTodoSuccess(todo) {
     return {
         type: DELETE_TODO_SUCCESS,
         todo,
         id: todo.id
+
     }
 }

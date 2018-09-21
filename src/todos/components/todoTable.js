@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import {Button, Icon, Label, Menu, Table} from 'semantic-ui-react'
 import {Table} from 'semantic-ui-react'
 import TodoRow from './todoRow'
 import EditTodo from './editTodo'
@@ -8,15 +7,13 @@ import EditTodo from './editTodo'
 
 // TodoTable is a Stateless component
 const TodoTable = (props) => {
-    console.log(props.todos)
     return (
         <Table celled>
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell>Title</Table.HeaderCell>
                     <Table.HeaderCell>Description</Table.HeaderCell>
-                    {/* <Table.HeaderCell>Date</Table.HeaderCell> */}
-                    {/* <Table.HeaderCell>Options</Table.HeaderCell> */}
+
                 </Table.Row>
             </Table.Header>
 
@@ -43,9 +40,9 @@ const TodoTable = (props) => {
                             // console.log('[Already there]', t)
                             return <TodoRow
                                 todo={t}
-                                // key={t.id}
-                                key={Math.random()}
-                                completeTodo={e => props.completeTodo(t)}
+                                required
+                                key={t.id}
+                                completeTodo={e => props.completeTodo}
                                 startEditing={e => props.startEditing(t.id)}
                                 deleteTodo={e=> props.deleteTodo(t)}
                             />

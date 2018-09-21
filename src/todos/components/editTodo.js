@@ -2,14 +2,10 @@ import React, {Component} from 'react';
 
 // import {Button, Icon, Label, Menu, Table} from 'semantic-ui-react'
 import {Button, Table} from 'semantic-ui-react'
-import {Input} from 'semantic-ui-react'
+import {Input, Form} from 'semantic-ui-react'
 
 //Import moment library for React Datepicker
 
-// import moment from 'moment';
-
-// import DatePicker from 'react-datepicker';
-// import 'react-datepicker/dist/react-datepicker.css';
 
 class EditTodo extends Component {
 
@@ -32,8 +28,7 @@ class EditTodo extends Component {
     //Initializes a Empty Todo Object
 
     emptyTodo = () => {
-        // return {title: "", description: "", date: moment()}
-        return {title: "", description: "", id: '' }
+        return {title: "", description: "" }
     }
 
 
@@ -47,14 +42,10 @@ class EditTodo extends Component {
         this.setState({description: event.target.value})
     }
 
-    // changeNewDate = (event) => {
-    //     this.setState({date: event})
-    // }
 
     // Form submission methods
 
     createTodo = (event) => {
-        // console.log('[CREATE NEW]', this.state)
         this.resetTodo()
         this.props.createTodo(this.state)
     }
@@ -74,21 +65,19 @@ class EditTodo extends Component {
 
     // Convert the date to moment object for the React DatePicker
 
-    // getDateForDatePicker() {
-    //     return moment(this.state.date)
-    // }
+
 
     render() {
         return (
-            <Table.Row id={Math.random()}>
+            <Table.Row required>
 
-                <Table.Cell>
+                <Table.Cell >
 
                     {/* The Value flows the data from the state to the control */}
                     {/* The onChange method pass the value from the Control to the State, It takes a method reference */}
                     {/* In this way a controlled two way binding is established */}
 
-                    <Input                        
+                    <Form.Field control={Input} required                      
                         placeholder='Title'
                         value={this.state.title}
                         onChange={this.changeNewTitle}/>
@@ -97,23 +86,15 @@ class EditTodo extends Component {
                 <Table.Cell>
                     <Input
                         placeholder='Description'
-                        value={this.state.description}
-                        onChange={this.changeNewDescription}/>
+                        onChange={this.changeNewDescription}
+                        value={this.state.description} />
                 </Table.Cell>
 
-                {/* <Table.Cell> */}
-
-                    {/* React Datepicker gets the moment date from the class method */}
-
-                    {/* <DatePicker */}
-                         {/* selected={this.getDateForDatePicker()} */}
-                         {/* onChange={this.changeNewDate}/> */}
-                {/* </Table.Cell> */}
+          
 
                 {/* The options component takes the inputs and decide if It's an option for a Edit Todo or Add New Todo */}
 
                 <Options
-                    
                     todo={this.props.todo}    
                     editTodo={this.editTodo}
                     createTodo={this.createTodo}

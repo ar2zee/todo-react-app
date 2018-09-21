@@ -21,11 +21,12 @@ const getTodo = () => {
     return HttpClient.get(TODO_API)
 }
 
-//Update
-const updateTodo = todo => {
+//markTodoAsCompleted
+const markTodoAsCompleted = todo => {
     return HttpClient.put(`${TODO_API}/${todo.id}`)
 }
 
+// Change Todo
 const changeTodo = todo => {
     return HttpClient.patch(`${TODO_API}/${todo.id}`, todo)
 }
@@ -38,6 +39,6 @@ const removeTodo = todo => {
 
 //Encapsulating in a JSON object
 
-const TodoApi = { createTodo, getTodo, updateTodo, removeTodo, changeTodo}
+const TodoApi = { createTodo, getTodo, markTodoAsCompleted, removeTodo, changeTodo}
 
 export {TodoApi}

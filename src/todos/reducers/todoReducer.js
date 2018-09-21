@@ -62,7 +62,7 @@ export function TodoListReducer(state = [], action) {
 
         }
         case TodoActions.DELETE_TODO_SUCCESS: {
-
+   
             return state.filter(s => todo(s, action))
 
         }
@@ -80,8 +80,10 @@ const todo = (state, action) => {
 
     // If the mapped todo of the previous state matches with the new ID of the action, 
     // Only then proceed to the Reducer Switch case
-
+    console.log('checks:', action.id)
     if (state.id !== (action.id || action.todo.id)) {
+        // console.log('state.id:', state.id, 'action.id:', action.id, 'action.todo.id:', action.todo.id)
+        // console.log(action)
         return state;
     }
 
@@ -115,7 +117,8 @@ const todo = (state, action) => {
             }
 
         case TodoActions.UPDATE_TODO_SUCCESS:
-            {
+        {
+            console.log('checks:', ...action.todo)
                 return {
                     ...state,
                     ...action.todo,
@@ -127,6 +130,7 @@ const todo = (state, action) => {
             {
                 return {
                     ...state,
+                    // ...action.todos,
                     deleting: true
                 }
             }
