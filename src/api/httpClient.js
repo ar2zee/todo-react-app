@@ -21,8 +21,8 @@ const del = (url) => {
     return axios.delete(url)
 }
 
-const patch = (url = '', data = '', config = {}) => {
-    return axios.patch(url, data, config)
+const patch = (url = '', data) => {
+    return axios.patch(url, data, )
 }
 
 //Encapsulating in a JSON object

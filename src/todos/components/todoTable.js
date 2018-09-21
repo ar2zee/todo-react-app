@@ -25,6 +25,7 @@ const TodoTable = (props) => {
                     .todos
                     .map(t => {
                         
+                        // console.log(props.editTodo)
                         // If the todo is being edited, EditTodo Component is rendered here
 
                         if (t.editing) {

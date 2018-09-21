@@ -50,7 +50,10 @@ class EditTodo extends Component {
         this.props.createTodo(this.state)
     }
     editTodo = (event) => {
+        console.log('[editTodo]: ', this.state)
+        const newData = this.state;
         this.props.editTodo(this.state)
+        return newData
     }
 
 

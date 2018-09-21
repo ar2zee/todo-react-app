@@ -45,7 +45,6 @@ export function TodoListReducer(state = [], action) {
 
         }
         case TodoActions.UPDATE_TODO: {
-
             return state.map(s => todo(s, action))
             
         }
@@ -80,7 +79,6 @@ const todo = (state, action) => {
 
     // If the mapped todo of the previous state matches with the new ID of the action, 
     // Only then proceed to the Reducer Switch case
-    console.log('checks:', action.id)
     if (state.id !== (action.id || action.todo.id)) {
         // console.log('state.id:', state.id, 'action.id:', action.id, 'action.todo.id:', action.todo.id)
         // console.log(action)
@@ -111,6 +109,7 @@ const todo = (state, action) => {
             {
                 return {
                     ...state,
+                    ...action.todo, // BEST THING THIS NIGHT
                     editing: false,
                     updating: true
                 }
@@ -118,10 +117,8 @@ const todo = (state, action) => {
 
         case TodoActions.UPDATE_TODO_SUCCESS:
         {
-            console.log('checks:', ...action.todo)
                 return {
                     ...state,
-                    ...action.todo,
                     updating: false
                 }
             }

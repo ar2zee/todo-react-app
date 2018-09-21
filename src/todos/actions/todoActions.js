@@ -52,7 +52,6 @@ export function CreateTodo(todo){
         })
     }
 }
-
 export function CreateTodoSuccess(todo){
     return {
         type:CREATE_TODO_SUCCESS,
@@ -69,7 +68,6 @@ export function GetTodos(){
         })
     }
 }
-
 export function GetTodoSuccess(todos){
     return {
         type:GET_TODOS_SUCCESS,
@@ -92,6 +90,7 @@ export function CancelEditing(id) {
     }
 }
 
+// Change Todo
 export function changeTodo(todo) {
     return (dispatch, getState) => {
         //Multiple actions can be sent usign the Redux-Thunk middleware
@@ -100,15 +99,16 @@ export function changeTodo(todo) {
             todo
         })
         TodoApi.changeTodo(todo).then(res => {
-            dispatch(ChangeTodoSuccess(res.data))
+            dispatch(ChangeTodoSuccess(res))
         })
     }
 }
 export function ChangeTodoSuccess(todo) {
+    const newData = JSON.parse(todo.config.data);
     return {
         type: UPDATE_TODO_SUCCESS,
         todo,
-        id: todo.id
+        id: newData.id
     }
 }
 
@@ -127,7 +127,6 @@ export function DeleteTodo(todo) {
         }) 
     }
 }
-
 export function DeleteTodoSuccess(todo) {
     return {
         type: DELETE_TODO_SUCCESS,

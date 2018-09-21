@@ -30,7 +30,13 @@ export class TodoContainer extends Component {
         this.props.actions.CancelEditing(id)
     }
     editTodo = (todo) => {
+        const newDescription = todo.description;
         this.props.actions.changeTodo(todo)
+        return [
+            ...this.props.todos,
+            newDescription
+        ]
+        
     }
 
     // completeTodo = (todo) => {
