@@ -26,15 +26,16 @@ const TodoRow = (props) => {
     );
 }
 
-// Right now Updating, done and deleting these three states are represented with different Class Name
+// Updating, done and deleting these three states are represented with different Class Name
 const getClassName = (props) => {
+    console.log(props.todo.completed)
     return `
     ${props.todo.updating
         ? "updating"
         : ""}
-    ${props.todo.status === 'done'
-            ? "done"
-            : ""}
+    ${props.todo.completed === true 
+        ? props.todo.status = 'done' 
+        : props.todo.status = "" }    
     ${props.todo.deleting
                 ? "deleting"
                 : ""}

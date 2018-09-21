@@ -113,14 +113,18 @@ const todo = (state, action) => {
                 return {
                     ...state,
                     ...action.todo, 
-                    updating: true
+                    updating: true,
+                    completed: true
                 }
             }
 
         case TodoActions.COMPLETE_TODO_SUCCESS:
-            {
-                return false
-            }
+        {
+            return {
+                completed: true,
+                updating: false
+                }
+            }   
 
         case TodoActions.DELETE_TODO:
             {

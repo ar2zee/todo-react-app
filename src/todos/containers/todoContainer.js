@@ -7,16 +7,6 @@ import TodoTable from '../components/todoTable';
 
 export class TodoContainer extends Component {
 
-
-    //Create
-    createTodo = (todo) => {
-    if(todo.title.length === 0) {
-        console.error('Please Enter Something!')
-    } else{
-        this.props.actions.CreateTodo(todo)
-    }
-}
-
     //Update
     startEditing = (id) => {
         this.props.actions.StartEditing(id)
@@ -38,6 +28,15 @@ export class TodoContainer extends Component {
     //Delete
     deleteTodo = (todo) => {
         this.props.actions.DeleteTodo(todo)
+    }
+
+    //Create
+    createTodo = (todo) => {
+        if (todo.title.length === 0) {
+            console.error('Please Enter Something!');
+        } else {
+            this.props.actions.CreateTodo(todo)
+        }
     }
 
     render() {
