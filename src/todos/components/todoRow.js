@@ -1,11 +1,11 @@
 import React from 'react';
 import {Button, Table} from 'semantic-ui-react'
 
-//takes the props and maps the specific events to the methods of parent component
 
+//takes the props and maps the specific events to the methods of parent component
 const TodoRow = (props) => {
+
     return (
-        
         // getClass Name assigns the class names of this element 
         <Table.Row className={getClassName(props)}>
             <Table.Cell>{props.todo.title}</Table.Cell>
@@ -18,11 +18,15 @@ const TodoRow = (props) => {
                 <Button className="option-buttons" color='blue' onClick={props.startEditing}>
                     <i className="fa fa-pencil"></i>
                 </Button>
+                <Button className="option-buttons" color='purple' onClick={props.singleTodoOpen}>
+                    <i className="fa fa-link"></i>
+                </Button>
                 <Button className="option-buttons" color='red' onClick={props.deleteTodo}>
                     <i className="fa fa-trash"></i>
                 </Button>
             </Table.Cell>
         </Table.Row>
+        
     );
 }
 

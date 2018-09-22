@@ -1,4 +1,4 @@
-import axios from 'axios' 
+import axios from 'axios';
 
 //Create a Http Client using Axios.
 

@@ -31,9 +31,9 @@ const TodoTable = (props) => {
                             // If the todo is not being edited the TodoRow component is returned
                             return <TodoRow
                                 todo={t}
-                                required
                                 key={t.id}
                                 completeTodo={e => props.completeTodo(t)}
+                                singleTodoOpen={e => props.singleTodoOpen(t)}
                                 startEditing={e => props.startEditing(t.id)}
                                 deleteTodo={e=> props.deleteTodo(t)}/>
                         }

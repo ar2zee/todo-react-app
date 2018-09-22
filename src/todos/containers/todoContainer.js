@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
+import { Route, withRouter } from 'react-router-dom';
 
-
+import SingleTodo from '../singleTodo/SingleTodo';
 import * as TodoActions from '../actions/todoActions'
 import TodoTable from '../components/todoTable';
 
@@ -26,6 +27,12 @@ export class TodoContainer extends Component {
         this.props.actions.markTodoAsCompleted({ ...todo, status: 'done', completed: true})
     }
 
+    singleTodoOpen = (todo) => {
+        console.log(this.props.match.url)
+        this.props.history.push({ pathname: '/' + todo.id });
+        // return <Route path={this.props.match.url + todo.id} exact component={SingleTodo} /> 
+    }
+
     //Delete
     deleteTodo = (todo) => {
         this.props.actions.DeleteTodo(todo)
@@ -43,7 +50,9 @@ export class TodoContainer extends Component {
     render() {
         return (
             <div className="todo-container">
+            
                 <TodoTable
+                    singleTodoOpen={this.singleTodoOpen} // NEW ONE !!!
                     deleteTodo = {this.deleteTodo}
                     todos={this.props.todos}
                     createTodo={this.createTodo}
@@ -51,6 +60,8 @@ export class TodoContainer extends Component {
                     cancelEditing={this.cancelEditing}
                     editTodo={this.editTodo}
                     completeTodo = {this.completeTodo}/>
+
+                {/* <Route path={this.props.match.url + '/:id'} exact component={SingleTodo} />  */}
             </div>
         );
     }
@@ -69,4 +80,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoContainer);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TodoContainer));

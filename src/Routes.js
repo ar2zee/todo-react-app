@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-// import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 
 // The Todo Container Component
 import TodoContainer from './todos/containers/todoContainer'
+import SingleTodo from './todos/singleTodo/SingleTodo';
 
 
 const Routes = (props) => {
@@ -11,7 +11,11 @@ const Routes = (props) => {
         <BrowserRouter>
             <Switch>
                 {/* It's setup at the default index route */}
-                <Route path="/" component={TodoContainer} />
+                <Switch>
+                <Route exact path="/" component={TodoContainer} />
+                <Route path={ '/:id'} exact component={SingleTodo} /> 
+                {/* <Route path="/todo" component={SingleTodo} /> */}
+                </Switch>
             </Switch>
         </BrowserRouter>
     )
