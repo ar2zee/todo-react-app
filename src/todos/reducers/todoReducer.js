@@ -95,7 +95,7 @@ const todo = (state, action) => {
                     ...state,
                     ...action.todo,
                     editing: false,
-                    updating: true
+                    
                 }
             }
 
@@ -104,7 +104,7 @@ const todo = (state, action) => {
                 return {
                     ...state,
                     ...action.todo,
-                    updating: false
+                     editing: false,
                 }
             }
 
@@ -113,7 +113,7 @@ const todo = (state, action) => {
                 return {
                     ...state,
                     ...action.todo, 
-                    updating: true,
+                    editing: false,
                     completed: true
                 }
             }
@@ -122,7 +122,8 @@ const todo = (state, action) => {
         {
             return {
                 completed: true,
-                updating: false
+                editing: false,
+                
                 }
             }   
 

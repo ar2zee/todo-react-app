@@ -17,9 +17,7 @@ const TodoTable = (props) => {
             <Table.Body>
 
                 {/* This maps the todos recieved as a prop  */}
-                {props
-                    .todos
-                    .map(t => {  
+                {props.todos.map(t => {  
                         // If the todo is being edited, EditTodo Component is rendered here
                         if (t.editing) {
                             return <EditTodo

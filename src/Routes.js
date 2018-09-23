@@ -14,7 +14,6 @@ const Routes = (props) => {
                 <Switch>
                 <Route exact path="/" component={TodoContainer} />
                 <Route path={ '/:id'} exact component={SingleTodo} /> 
-                {/* <Route path="/todo" component={SingleTodo} /> */}
                 </Switch>
             </Switch>
         </BrowserRouter>

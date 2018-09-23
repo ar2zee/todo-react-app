@@ -4,7 +4,6 @@ import {Button, Table} from 'semantic-ui-react'
 
 //takes the props and maps the specific events to the methods of parent component
 const TodoRow = (props) => {
-
     return (
         // getClass Name assigns the class names of this element 
         <Table.Row className={getClassName(props)}>
@@ -32,6 +31,7 @@ const TodoRow = (props) => {
 
 // Updating, done and deleting these three states are represented with different Class Name
 const getClassName = (props) => {
+    console.log('[todoRow]: ', props.todo)
     return `
     ${props.todo.updating
         ? "updating"
