@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Table, Button } from 'semantic-ui-react'
+// import { Table, Button } from 'semantic-ui-react'
+
+import { Button, Table } from '@material-ui/core';
 
 import EditTodo from '../components/editTodo'
 import TodoRow from '../components/todoRow';
@@ -22,6 +24,7 @@ class SingleTodo extends Component {
         this.props.actions.CancelEditing(id)
     }
     editTodo = (todo) => {
+        console.log('It works')
         this.props.actions.changeTodo(todo)
         return [
             ...this.props.todos,
@@ -29,7 +32,8 @@ class SingleTodo extends Component {
     }
     // Mark TODO as Completed 
     completeTodo = (todo) => {
-        this.props.actions.markTodoAsCompleted({ ...todo, status: 'done', completed: true })
+        this.props.actions.markTodoAsCompleted({ ...todo, status: 'done', completed: true, editing: false })
+        console.log(todo)
     }
 
     //Delete
@@ -48,6 +52,7 @@ class SingleTodo extends Component {
 
     componentDidMount() {
         this.titleUpdater();
+        
         // console.log('this.state.title: ', this.state)
     }
 
@@ -69,13 +74,14 @@ class SingleTodo extends Component {
                 <Table.Body>
                     {this.props.todos.map(t => { 
                         return (
-                    <Table.Row className={getClassName(t)}>
+                    <Table.Row className={getClassName(t)} key={t.id}>
                         <Table.Cell>{this.state.title}</Table.Cell>
                         <Table.Cell>{this.state.description}</Table.Cell>
 
                         <Table.Cell className="options">
                             {t.status !== 'done' && <Button className="option-buttons" color='green' onClick={t.completeTodo}>
                                 <i className="fa fa-check"></i>
+                                <h2></h2>
                             </Button>}
                             <Button className="option-buttons" color='blue' onClick={t.startEditing}>
                                 <i className="fa fa-pencil"></i>

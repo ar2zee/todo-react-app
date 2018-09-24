@@ -22,10 +22,11 @@ export class TodoContainer extends Component {
     }
     // Mark TODO as Completed 
     completeTodo = (todo) => {
-        this.props.actions.markTodoAsCompleted({ ...todo, status: 'done', completed: true})
+        this.props.actions.markTodoAsCompleted({ ...todo, status: 'done', completed: true, editing: false})
     }
 
     singleTodoOpen = (todo) => {
+        console.log(todo)
         this.props.history.push({ pathname: '/' + todo.id,
                                  search: `?title=${todo.title}&description=${todo.description}&completed=${todo.completed}`
         });

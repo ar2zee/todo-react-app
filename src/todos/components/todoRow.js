@@ -1,37 +1,40 @@
 import React from 'react';
-import {Button, Table} from 'semantic-ui-react'
+// import {Button, Table} from 'semantic-ui-react'
+
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
+import Button from '@material-ui/core/Button';
 
 
 //takes the props and maps the specific events to the methods of parent component
 const TodoRow = (props) => {
     return (
         // getClass Name assigns the class names of this element 
-        <Table.Row className={getClassName(props)}>
-            <Table.Cell>{props.todo.title}</Table.Cell>
-            <Table.Cell>{props.todo.description}</Table.Cell>
+        <TableRow className={getClassName(props)}>
+            <TableCell>{props.todo.title}</TableCell>
+            <TableCell>{props.todo.description}</TableCell>
 
-            <Table.Cell className="options">
-                {props.todo.status !== 'done' && <Button className="option-buttons" color='green' onClick={props.completeTodo}>
+            <TableCell className="options">
+                {props.todo.status !== 'done' && <Button className="option-buttons" color='primary' onClick={props.completeTodo}>
                     <i className="fa fa-check"></i>
                 </Button>}
-                <Button className="option-buttons" color='blue' onClick={props.startEditing}>
+                <Button className="option-buttons" color='default' onClick={props.startEditing}>
                     <i className="fa fa-pencil"></i>
                 </Button>
-                <Button className="option-buttons" color='purple' onClick={props.singleTodoOpen}>
+                <Button className="option-buttons" color='primary' onClick={props.singleTodoOpen}>
                     <i className="fa fa-link"></i>
                 </Button>
-                <Button className="option-buttons" color='red' onClick={props.deleteTodo}>
+                <Button className="option-buttons" color='secondary' onClick={props.deleteTodo}>
                     <i className="fa fa-trash"></i>
                 </Button>
-            </Table.Cell>
-        </Table.Row>
+            </TableCell>
+        </TableRow>
         
     );
 }
 
 // Updating, done and deleting these three states are represented with different Class Name
 const getClassName = (props) => {
-    console.log('[todoRow]: ', props.todo)
     return `
     ${props.todo.updating
         ? "updating"
