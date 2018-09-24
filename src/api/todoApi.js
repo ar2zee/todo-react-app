@@ -17,7 +17,7 @@ const getTodo = () => {
 
 //markTodoAsCompleted
 const markTodoAsCompleted = todo => {
-    return HttpClient.put(`${TODO_API}/${todo.id}`)
+    return HttpClient.put(`${TODO_API}/${todo.id}`, todo)
 }
 
 // Change Todo

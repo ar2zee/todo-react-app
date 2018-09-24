@@ -1,11 +1,43 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
-import { Table, Button } from 'semantic-ui-react'
 
-import EditTodo from '../components/editTodo'
-import TodoRow from '../components/todoRow';
+// import { Table, Button } from 'semantic-ui-react'
+
+// import EditTodo from '../components/editTodo'
+// import TodoRow from '../components/todoRow';
 import * as TodoActions from '../actions/todoActions'
+
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableHead from '@material-ui/core/TableHead';
+import Button from '@material-ui/core/Button';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
+import { withStyles } from '@material-ui/core/styles';
+
+
+const CustomTableCell = withStyles(theme => ({
+    head: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
+        fontSize: 24,
+    }
+}))(TableCell);
+
+const styles = theme => ({
+    table: {
+        minWidth: 700,
+        width: '100%',
+        overflowX: 'auto',
+    },
+    row: {
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.background.default,
+        },
+    },
+});
+
 
 class SingleTodo extends Component {
     
@@ -22,6 +54,7 @@ class SingleTodo extends Component {
         this.props.actions.CancelEditing(id)
     }
     editTodo = (todo) => {
+        console.log('It works')
         this.props.actions.changeTodo(todo)
         return [
             ...this.props.todos,
@@ -29,7 +62,8 @@ class SingleTodo extends Component {
     }
     // Mark TODO as Completed 
     completeTodo = (todo) => {
-        this.props.actions.markTodoAsCompleted({ ...todo, status: 'done', completed: true })
+        this.props.actions.markTodoAsCompleted({ ...todo, status: 'done', completed: true, editing: false })
+        console.log(todo)
     }
 
     //Delete
@@ -48,6 +82,7 @@ class SingleTodo extends Component {
 
     componentDidMount() {
         this.titleUpdater();
+        
         // console.log('this.state.title: ', this.state)
     }
 
@@ -57,38 +92,38 @@ class SingleTodo extends Component {
     
     
     render(props) {
-        // console.log(this.props);
+        const { classes } = this.props;
         return (
-            <Table celled>
-                <Table.Header>
-                    <Table.Row>
-                        <Table.HeaderCell>Title</Table.HeaderCell>
-                        <Table.HeaderCell>Description</Table.HeaderCell>
-                    </Table.Row>
-                </Table.Header>
-                <Table.Body>
+            <Table className={classes.table}>
+                <TableHead>
+                    <TableRow className={classes.row}>
+                        <CustomTableCell>Title</CustomTableCell>
+                        <CustomTableCell>Description</CustomTableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
                     {this.props.todos.map(t => { 
                         return (
-                    <Table.Row className={getClassName(t)}>
-                        <Table.Cell>{this.state.title}</Table.Cell>
-                        <Table.Cell>{this.state.description}</Table.Cell>
+                    <TableRow className={getClassName(t)} key={t.id}>
+                        <TableCell>{this.state.title}</TableCell>
+                        <TableCell>{this.state.description}</TableCell>
 
-                        <Table.Cell className="options">
-                            {t.status !== 'done' && <Button className="option-buttons" color='green' onClick={t.completeTodo}>
+                        <TableCell className="options">
+                            {t.status !== 'done' && <Button variant="contained" className="option-buttons" color='primary' onClick={t.completeTodo}>
                                 <i className="fa fa-check"></i>
                             </Button>}
-                            <Button className="option-buttons" color='blue' onClick={t.startEditing}>
+                            <Button variant="contained" className="option-buttons" color='default' onClick={t.startEditing}>
                                 <i className="fa fa-pencil"></i>
                             </Button>
-                            <Button className="option-buttons" color='red' onClick={t.deleteTodo}>
+                            <Button variant="contained" className="option-buttons" color='secondary' onClick={t.deleteTodo}>
                                 <i className="fa fa-trash"></i>
                             </Button>
-                        </Table.Cell>
-                    </Table.Row>
+                        </TableCell>
+                    </TableRow>
                         )
                     })}
 
-                </Table.Body>
+                </TableBody>
             </Table>
         )  
     }
@@ -123,4 +158,9 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleTodo);
+export default compose(
+    withStyles(styles, {
+        name: 'SingleTodo',
+    }),
+    connect(mapStateToProps, mapDispatchToProps),
+)(SingleTodo);

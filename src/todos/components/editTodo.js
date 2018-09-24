@@ -1,7 +1,14 @@
 import React, {Component} from 'react';
 
-import {Button, Table} from 'semantic-ui-react'
-import {Input} from 'semantic-ui-react'
+// import {Button, Table} from 'semantic-ui-react'
+// import {Input} from 'semantic-ui-react'
+
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
+import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
+
+
 
 class EditTodo extends Component {
     constructor(props) {
@@ -52,20 +59,20 @@ class EditTodo extends Component {
 
     render() {
         return (
-            <Table.Row>
-                <Table.Cell >
+            <TableRow>
+                <TableCell >
                     <Input 
                         placeholder='Title'
                         value={this.state.title}
                         onChange={this.changeNewTitle} />
-                </Table.Cell>
+                </TableCell>
 
-                <Table.Cell>
+                <TableCell>
                     <Input
                         placeholder='Description'
                         onChange={this.changeNewDescription}
                         value={this.state.description} />
-                </Table.Cell>
+                </TableCell>
 
                 {/* The options component takes the inputs and decide if It's an option for a Edit Todo or Add New Todo */}
                 <Options
@@ -74,7 +81,7 @@ class EditTodo extends Component {
                     createTodo={this.createTodo}
                     resetTodo={this.resetTodo}
                     cancelEdit={this.cancelEditing}/>
-            </Table.Row>
+            </TableRow>
         )
     }
 }
@@ -93,28 +100,28 @@ const Options = (props) => {
 // EditOptions and AddOptions  maps their events to the state events of their parent compoent through the props
 const EditOptions = (props) => {
     return (
-        <Table.Cell>
-            <Button color='green' onClick={props.editTodo}>
+        <TableCell>
+            <Button variant="contained" color='primary' onClick={props.editTodo}>
                 Edit
             </Button>
-            < Button color='blue' onClick={props.cancelEdit}>
+            < Button variant="contained" color='secondary' onClick={props.cancelEdit}>
                 Cancel
             </Button>
-        </Table.Cell>
+        </TableCell>
     );
 }
 
 
 const AddOptions = (props) => {
     return (
-        <Table.Cell>
-            <Button  color='green' onClick={props.createTodo}>
+        <TableCell>
+            <Button variant="contained" color='primary' onClick={props.createTodo}>
                 Create
             </Button>
-            < Button color='blue' onClick={props.resetTodo}>
+            < Button variant="contained" color='secondary' onClick={props.resetTodo}>
                 Reset
             </Button>
-        </Table.Cell>
+        </TableCell>
     );
 }
 

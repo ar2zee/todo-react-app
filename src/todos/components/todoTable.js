@@ -1,20 +1,48 @@
 import React from 'react';
-import {Table} from 'semantic-ui-react'
+// import {Table} from 'semantic-ui-react'
+
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
+import { withStyles } from '@material-ui/core/styles';
 
 import TodoRow from './todoRow'
 import EditTodo from './editTodo'
 
+const CustomTableCell = withStyles(theme => ({
+    head: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
+        fontSize: 24,
+    }
+}))(TableCell);
+
+const styles = theme => ({
+    table: {
+        minWidth: 700,
+        width: '100%',
+        overflowX: 'auto',
+    },
+    row: {
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.background.default,
+        },
+    },
+});
 
 const TodoTable = (props) => {
+    const { classes } = props;
     return (
-        <Table celled>
-            <Table.Header>
-                <Table.Row>
-                    <Table.HeaderCell>Title</Table.HeaderCell>
-                    <Table.HeaderCell>Description</Table.HeaderCell>
-                </Table.Row>
-            </Table.Header>
-            <Table.Body>
+        <Table className={classes.table}>
+            <TableHead>
+                <TableRow className={classes.row}>
+                    <CustomTableCell>Title</CustomTableCell>
+                    <CustomTableCell>Description</CustomTableCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
 
                 {/* This maps the todos recieved as a prop  */}
                 {props.todos.map(t => {  
@@ -39,9 +67,9 @@ const TodoTable = (props) => {
                 
                 {/* This EditTodo component is used as a Create new Todo Component */}
                 <EditTodo createTodo={props.createTodo} />
-            </Table.Body>
+            </TableBody>
         </Table>
     )
 }
 
-export default TodoTable;
+export default withStyles(styles)(TodoTable);

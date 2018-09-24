@@ -10,7 +10,7 @@ const get = (url) => {
     return axios(url)
 }
 
-const put = (url) => {
+const put = (url, data) => {
     return axios.put(url)
 }
 
