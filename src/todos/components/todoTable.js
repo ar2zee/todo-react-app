@@ -6,18 +6,40 @@ import TableBody from '@material-ui/core/TableBody';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
+import { withStyles } from '@material-ui/core/styles';
 
 import TodoRow from './todoRow'
 import EditTodo from './editTodo'
 
+const CustomTableCell = withStyles(theme => ({
+    head: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
+        fontSize: 24,
+    }
+}))(TableCell);
+
+const styles = theme => ({
+    table: {
+        minWidth: 700,
+        width: '100%',
+        overflowX: 'auto',
+    },
+    row: {
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.background.default,
+        },
+    },
+});
 
 const TodoTable = (props) => {
+    const { classes } = props;
     return (
-        <Table>
+        <Table className={classes.table}>
             <TableHead>
-                <TableRow>
-                    <TableCell>Title</TableCell>
-                    <TableCell>Description</TableCell>
+                <TableRow className={classes.row}>
+                    <CustomTableCell>Title</CustomTableCell>
+                    <CustomTableCell>Description</CustomTableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -50,4 +72,4 @@ const TodoTable = (props) => {
     )
 }
 
-export default TodoTable;
+export default withStyles(styles)(TodoTable);

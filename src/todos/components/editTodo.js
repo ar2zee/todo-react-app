@@ -101,10 +101,10 @@ const Options = (props) => {
 const EditOptions = (props) => {
     return (
         <TableCell>
-            <Button color='primary' onClick={props.editTodo}>
+            <Button variant="contained" color='primary' onClick={props.editTodo}>
                 Edit
             </Button>
-            < Button color='secondary' onClick={props.cancelEdit}>
+            < Button variant="contained" color='secondary' onClick={props.cancelEdit}>
                 Cancel
             </Button>
         </TableCell>
@@ -115,10 +115,10 @@ const EditOptions = (props) => {
 const AddOptions = (props) => {
     return (
         <TableCell>
-            <Button color='primary' onClick={props.createTodo}>
+            <Button variant="contained" color='primary' onClick={props.createTodo}>
                 Create
             </Button>
-            < Button color='secondary' onClick={props.resetTodo}>
+            < Button variant="contained" color='secondary' onClick={props.resetTodo}>
                 Reset
             </Button>
         </TableCell>
