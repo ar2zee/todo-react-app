@@ -34,11 +34,11 @@
 
 
 .updating{
-  background: rgb(0, 172, 172);
+  background: rgb(69, 226, 69);
 }
 
 .done{
-  background: rgb(69, 226, 69);
+  background: #303f9f;
 }
 .deleting{
   background: rgb(235, 122, 73);

@@ -4,9 +4,6 @@ import { TodoApi } from "../../api/todoApi";
 
 
 // These are the action type constants. Ordered by CRUD order. 
-// There is a pattern of Action, Action_Success, Action_Error action types for the Async actions. 
-
-
 
 //Create
 export const CREATE_TODO = '[Todo] CREATE_TODO' 
@@ -42,8 +39,8 @@ export const DELETE_TODO_ERROR = '[Todo] DELETE_TODO_ERROR'
  
 //These are the action types Also ordered in CRUD Order.
 
-//Create
 
+//Create
 //The dispatch and getstate function is provided by the Redux-Thunk middleware, we can dispatch actions with it.
 
 export function CreateTodo(todo){

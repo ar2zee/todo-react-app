@@ -13,8 +13,8 @@ import EditTodo from './editTodo'
 
 const CustomTableCell = withStyles(theme => ({
     head: {
-        backgroundColor: theme.palette.common.black,
-        color: theme.palette.common.white,
+        backgroundColor: theme.palette.common.white,
+        color: theme.palette.common.black,
         fontSize: 24,
     }
 }))(TableCell);
