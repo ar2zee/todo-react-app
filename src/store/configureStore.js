@@ -1,25 +1,29 @@
-import { createStore, applyMiddleware } from 'redux'
-import thunkMiddleware from 'redux-thunk'
+import { createStore, applyMiddleware, compose } from 'redux'
+// import thunkMiddleware from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
-import { createLogger } from 'redux-logger'
 
+// import { CreateTodo} from '../todos/actions/todoActions';
 
 // Import the root reducer
 import rootReducer from '../reducers/rootReducer'
+import allTodosSagasAction from '../todos/sagas/index'
 
 // Create the redux logging middleware 
-const loggerMiddleware = createLogger() 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const sagaMiddleware = createSagaMiddleware()
 
 // PreloadState is the initial State.
 export function configureStore(preloadedState) {
-  return createStore(
+  const store = createStore(
     rootReducer,
     preloadedState,
 
     //Apply the middleware usign the Redux's provided applymiddleware function
-    applyMiddleware(
-      thunkMiddleware,
-      loggerMiddleware // console.log utilit
+    composeEnhancers(applyMiddleware(
+      // thunkMiddleware,
+      sagaMiddleware
     )
-  )
+  ))
+  sagaMiddleware.run(allTodosSagasAction)
+  return store
 }

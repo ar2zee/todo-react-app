@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 // The Todo Container Component
 import TodoContainer from './todos/containers/todoContainer'
-import SingleTodo from './todos/singleTodo/SingleTodo';
+// import SingleTodo from './todos/singleTodo/SingleTodo';
 
 
 const Routes = (props) => {
@@ -13,7 +13,7 @@ const Routes = (props) => {
                 {/* It's setup at the default index route */}
                 <Switch>
                 <Route exact path="/" component={TodoContainer} />
-                <Route path={ '/:id'} exact component={SingleTodo} /> 
+                {/* <Route path={ '/:id'} exact component={SingleTodo} />  */}
                 </Switch>
             </Switch>
         </BrowserRouter>
