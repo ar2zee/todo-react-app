@@ -1,7 +1,6 @@
 import {HttpClient} from './httpClient' 
 
 const API = 'https://practiceapi.devmountain.com/api'
-
 const TODO_API = `${API}/tasks`
 
 
@@ -21,7 +20,7 @@ const markTodoAsCompleted = todo => {
 }
 
 // Change Todo
-const ChangeTodo = todo => {
+const changeTodo = todo => {
     return HttpClient.patch(`${TODO_API}/${todo.id}`, todo)
 }
 
@@ -31,6 +30,6 @@ const removeTodo = todo => {
 }
 
 
-const TodoApi = { createTodo, getTodo, markTodoAsCompleted, removeTodo, ChangeTodo}
+const TodoApi = { createTodo, getTodo, markTodoAsCompleted, removeTodo, changeTodo}
 
 export {TodoApi}

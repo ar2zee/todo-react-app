@@ -1,8 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-// import thunkMiddleware from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
-
-// import { CreateTodo} from '../todos/actions/todoActions';
 
 // Import the root reducer
 import rootReducer from '../reducers/rootReducer'
@@ -17,10 +14,8 @@ export function configureStore(preloadedState) {
   const store = createStore(
     rootReducer,
     preloadedState,
-
     //Apply the middleware usign the Redux's provided applymiddleware function
     composeEnhancers(applyMiddleware(
-      // thunkMiddleware,
       sagaMiddleware
     )
   ))

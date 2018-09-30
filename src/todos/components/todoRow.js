@@ -1,16 +1,8 @@
 import React from 'react';
-// import {Button, Table} from 'semantic-ui-react'
 
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
-
-const styles = theme => ({
-    button: {
-        backgroundColor: 'purple'
-    }
-});
 
 //takes the props and maps the specific events to the methods of parent component
 const TodoRow = (props) => {
@@ -51,4 +43,4 @@ const getClassName = (props) => {
             `
 }
 
-export default withStyles(styles)(TodoRow);
+export default TodoRow;

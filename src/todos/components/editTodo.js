@@ -1,13 +1,8 @@
 import React, {Component} from 'react';
-
-// import {Button, Table} from 'semantic-ui-react'
-// import {Input} from 'semantic-ui-react'
-
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
-
 
 
 class EditTodo extends Component {
@@ -45,8 +40,8 @@ class EditTodo extends Component {
         this.props.createTodo(this.state)
     }
 
-    ChangeTodo = (todo) => {
-        this.props.ChangeTodo(this.state)
+    changeTodo = (todo) => {
+        this.props.changeTodo(this.state)
     }
 
     // Modifying the inputs indirectly methods
@@ -54,7 +49,6 @@ class EditTodo extends Component {
         this.setState({title: "", description: ""})
     }
     cancelEditing = () => {
-        console.log(this.props)
         this.props.cancelEditing();
     }
 
@@ -79,7 +73,7 @@ class EditTodo extends Component {
                 {/* The options component takes the inputs and decide if It's an option for a Edit Todo or Add New Todo */}
                 <Options
                     todo={this.props.todo}    
-                    ChangeTodo={this.ChangeTodo}
+                    changeTodo={this.changeTodo}
                     createTodo={this.createTodo}
                     resetTodo={this.resetTodo}
                     cancelEdit={this.cancelEditing}/>
@@ -103,7 +97,7 @@ const Options = (props) => {
 const EditOptions = (props) => {
     return (
         <TableCell>
-            <Button variant="contained" color='primary' onClick={props.ChangeTodo}>
+            <Button variant="contained" color='primary' onClick={props.changeTodo}>
                 Edit
             </Button>
             < Button variant="contained" color='secondary' onClick={props.cancelEdit}>

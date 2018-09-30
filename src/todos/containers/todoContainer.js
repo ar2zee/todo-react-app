@@ -15,7 +15,7 @@ export class TodoContainer extends Component {
     cancelEditing = (id) => {
         this.props.actions.CancelEditing(id)
     }
-    ChangeTodo = (todo) => {
+    changeTodo = (todo) => {
         this.props.actions.ChangeTodo({ ...todo,  editing: false })
     }
         
@@ -47,7 +47,7 @@ export class TodoContainer extends Component {
                     todos={this.props.todos}
                     createTodo={this.createTodo}
                     cancelEditing={this.cancelEditing}
-                    ChangeTodo={this.ChangeTodo}
+                    changeTodo={this.changeTodo}
                     deleteTodo = {this.deleteTodo}
                     startEditing={this.startEditing}
                     completeTodo = {this.completeTodo}/>

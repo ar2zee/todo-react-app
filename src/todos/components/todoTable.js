@@ -49,7 +49,7 @@ const TodoTable = (props) => {
                         // If the todo is being edited, EditTodo Component is rendered here
                         if (t.editing) {
                             return <EditTodo
-                                ChangeTodo={props.ChangeTodo}
+                                changeTodo={props.changeTodo}
                                 cancelEditing={e => props.cancelEditing(t.id)}
                                 key={t.id}
                                 todo={t}/>
