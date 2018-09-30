@@ -21,7 +21,7 @@ const markTodoAsCompleted = todo => {
 }
 
 // Change Todo
-const changeTodo = todo => {
+const ChangeTodo = todo => {
     return HttpClient.patch(`${TODO_API}/${todo.id}`, todo)
 }
 
@@ -31,6 +31,6 @@ const removeTodo = todo => {
 }
 
 
-const TodoApi = { createTodo, getTodo, markTodoAsCompleted, removeTodo, changeTodo}
+const TodoApi = { createTodo, getTodo, markTodoAsCompleted, removeTodo, ChangeTodo}
 
 export {TodoApi}

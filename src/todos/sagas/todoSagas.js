@@ -11,29 +11,30 @@ export function* GetTodos() {
 
 export function* CreateTodo(action) {
         const response = yield TodoApi.createTodo(action.todo);
-        const todos = yield response.json();
-        yield put({ type: actionTypes.CREATE_TODO_SUCCESS });
+        const todos = yield response;
+        yield put({ type: actionTypes.CREATE_TODO_SUCCESS, todo: response });
         yield put({ type: actionTypes.GET_TODOS_SUCCESS, todos: todos });
 };
 
 export function* ChangeTodo(action) {
-        const response = yield TodoApi.changeTodo(action.id, action.updates);
-        const todos = yield response.json();
-        yield put({ type: actionTypes.UPDATE_TODO_SUCCESS });
+        const response = yield TodoApi.ChangeTodo(action.id);
+        const todos = yield response;
+        yield put({ type: actionTypes.UPDATE_TODO_SUCCESS, todo: action.id });
         yield put({ type: actionTypes.GET_TODOS_SUCCESS, todos: todos });
+        yield put({ type: actionTypes.CANCEL_EDITING});
 }
 
 export function* DeleteTodo(action) { 
         const response = yield TodoApi.removeTodo(action.id)
-        const todos = yield response.json();
-        yield put({ type: actionTypes.DELETE_TODO_SUCCESS });
-    yield put({ type: actionTypes.GET_TODOS_SUCCESS, todos: todos });
+        const todos = yield response;
+        yield put({ type: actionTypes.DELETE_TODO_SUCCESS, todo: response });
+        yield put({ type: actionTypes.GET_TODOS_SUCCESS, todos: todos });
 };
 
 export function* MarkTodoAsCompleted(action) {
         const response = yield TodoApi.markTodoAsCompleted(action.id)
-        const todos = yield response.json();
-        yield put({ type: actionTypes.COMPLETE_TODO_SUCCESS });
+        const todos = yield response;
+        yield put({ type: actionTypes.COMPLETE_TODO_SUCCESS, todo: response });
         yield put({ type: actionTypes.GET_TODOS_SUCCESS, todos: todos });
 };
 

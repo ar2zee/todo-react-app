@@ -14,7 +14,6 @@ const styles = theme => ({
 
 //takes the props and maps the specific events to the methods of parent component
 const TodoRow = (props) => {
-    const { classes } = props;
     return (
         // getClass Name assigns the class names of this element 
         <TableRow className={getClassName(props)}>
@@ -27,9 +26,6 @@ const TodoRow = (props) => {
                 </Button>}
                 <Button variant="contained" className="option-buttons" color='default' onClick={props.startEditing}>
                     <i className="fa fa-pencil"></i>
-                </Button>
-                <Button variant="contained" className={`${classes.button} option-buttons`}  onClick={props.singleTodoOpen}>
-                    <i className="fa fa-link"></i>
                 </Button>
                 <Button variant="contained" className="option-buttons" color='secondary' onClick={props.deleteTodo}>
                     <i className="fa fa-trash"></i>

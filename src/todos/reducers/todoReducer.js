@@ -1,9 +1,7 @@
 import * as TodoActions from '../actions/todoActions'
 
 //Reducer composition for the Collection and the Individual Item
-
 /*The collection Reducer */
-
 export function TodoListReducer(state = [], action) {
     switch (action.type) {
 
@@ -14,13 +12,11 @@ export function TodoListReducer(state = [], action) {
                     ...updatedState
                 ];
         }
-            
+
         //Read    
         case TodoActions.GET_TODOS_SUCCESS: {
             return action.todos.data;
         }
-        
-        /*handle the data by mapping it*/
 
         //Update    
         case TodoActions.START_EDITING: {
@@ -62,17 +58,14 @@ export function TodoListReducer(state = [], action) {
 }
 
 /*The individual Reducer */
-
 const todo = (state, action) => {
-
     // If the mapped todo of the previous state matches with the new ID of the action, 
     // Only then proceed to the Reducer Switch case
-    if (state.id !== (action.id || action.todo.id)) {
+    if (state.id !== (action.id )) {
         return state;
     }
 
     switch (action.type) {
-
         case TodoActions.START_EDITING:
             {
                 return {
@@ -80,7 +73,6 @@ const todo = (state, action) => {
                     editing: true
                 }
             }
-
         case TodoActions.CANCEL_EDITING:
             {
                 return {
@@ -88,17 +80,13 @@ const todo = (state, action) => {
                     editing: false
                 }
             }
-
         case TodoActions.UPDATE_TODO:
             {
                 return {
                     ...state,
                     ...action.todo,
-                    editing: false,
-                    
                 }
             }
-
         case TodoActions.UPDATE_TODO_SUCCESS:
         {
                 return {
@@ -107,26 +95,21 @@ const todo = (state, action) => {
                      editing: false,
                 }
             }
-
         case TodoActions.COMPLETE_TODO:
             {
                 return {
                     ...state,
-                    ...action.todo, 
-                    editing: false,
+                    ...action.todo,
                     completed: true
                 }
             }
-
         case TodoActions.COMPLETE_TODO_SUCCESS:
         {
             return {
                 completed: true,
                 editing: false,
-                
                 }
             }   
-
         case TodoActions.DELETE_TODO:
             {
                 return {
@@ -135,12 +118,10 @@ const todo = (state, action) => {
                     deleting: true
                 }
             }
-
         case TodoActions.DELETE_TODO_SUCCESS:
             {
                 return false
             }
-
         default:
             {
                 return state;

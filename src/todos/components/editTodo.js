@@ -44,8 +44,9 @@ class EditTodo extends Component {
         this.resetTodo()
         this.props.createTodo(this.state)
     }
-    editTodo = (event) => {
-        this.props.editTodo(this.state)
+
+    ChangeTodo = (todo) => {
+        this.props.ChangeTodo(this.state)
     }
 
     // Modifying the inputs indirectly methods
@@ -53,6 +54,7 @@ class EditTodo extends Component {
         this.setState({title: "", description: ""})
     }
     cancelEditing = () => {
+        console.log(this.props)
         this.props.cancelEditing();
     }
 
@@ -77,7 +79,7 @@ class EditTodo extends Component {
                 {/* The options component takes the inputs and decide if It's an option for a Edit Todo or Add New Todo */}
                 <Options
                     todo={this.props.todo}    
-                    editTodo={this.editTodo}
+                    ChangeTodo={this.ChangeTodo}
                     createTodo={this.createTodo}
                     resetTodo={this.resetTodo}
                     cancelEdit={this.cancelEditing}/>
@@ -101,7 +103,7 @@ const Options = (props) => {
 const EditOptions = (props) => {
     return (
         <TableCell>
-            <Button variant="contained" color='primary' onClick={props.editTodo}>
+            <Button variant="contained" color='primary' onClick={props.ChangeTodo}>
                 Edit
             </Button>
             < Button variant="contained" color='secondary' onClick={props.cancelEdit}>

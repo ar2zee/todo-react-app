@@ -7,6 +7,7 @@ import TodoTable from '../components/todoTable';
 
 export class TodoContainer extends Component {
 
+
     //Update
     startEditing = (id) => {
         this.props.actions.StartEditing(id)
@@ -14,23 +15,15 @@ export class TodoContainer extends Component {
     cancelEditing = (id) => {
         this.props.actions.CancelEditing(id)
     }
-    editTodo = (todo) => {
-        this.props.actions.changeTodo(todo)
-        return [
-            ...this.props.todos,
-        ]
+    ChangeTodo = (todo) => {
+        this.props.actions.ChangeTodo({ ...todo,  editing: false })
     }
+        
     // Mark TODO as Completed 
     completeTodo = (todo) => {
-        this.props.actions.markTodoAsCompleted({ ...todo, status: 'done', completed: true, editing: false})
+        this.props.actions.MarkTodoAsCompleted({ ...todo, status: 'done', completed: true, editing: false})
     }
 
-    singleTodoOpen = (todo) => {
-        console.log(todo)
-        this.props.history.push({ pathname: '/' + todo.id,
-                                 search: `?title=${todo.title}&description=${todo.description}&completed=${todo.completed}`
-        });
-    }
 
     //Delete
     deleteTodo = (todo) => {
@@ -51,11 +44,10 @@ export class TodoContainer extends Component {
             <div className="todo-container">
             
                 <TodoTable
-                    singleTodoOpen={this.singleTodoOpen} // NEW ONE !!!
                     todos={this.props.todos}
                     createTodo={this.createTodo}
                     cancelEditing={this.cancelEditing}
-                    editTodo={this.editTodo}
+                    ChangeTodo={this.ChangeTodo}
                     deleteTodo = {this.deleteTodo}
                     startEditing={this.startEditing}
                     completeTodo = {this.completeTodo}/>

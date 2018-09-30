@@ -19,7 +19,7 @@ const del = (url) => {
 }
 
 const patch = (url = '', data) => {
-    return axios.patch(url, data, )
+    return axios.patch(url, data)
 }
 
 
